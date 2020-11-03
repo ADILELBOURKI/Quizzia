@@ -18,12 +18,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+
+import ma.adilelbourki.quizzia.model.Question;
 
 public class MainActivity extends AppCompatActivity {
 
    private RequestQueue queue;
       String url ="https://raw.githubusercontent.com/curiousily/simple-quiz/master/script/statements-data.json";
-
+      private ArrayList<Question> questionArrayList = new ArrayList<>();
 //     String url ="https://jsonplaceholder.typicode.com/posts/1";
 
     @Override
@@ -36,8 +39,15 @@ public class MainActivity extends AppCompatActivity {
          public void onResponse(JSONArray response) {
              for (int i =0;i<response.length();i++){
                  try {
-                     JSONArray jsonArray = response.getJSONArray(i);
-                     Log.d("questions","question : "+" "+ i +" "+jsonArray.get(0));
+                     Question question = new Question();
+                     question.setAnswer(response.getJSONArray(i).get(0).toString());
+                     question.setTrue(response.getJSONArray(i).getBoolean(1));
+
+//                     JSONArray jsonArray = response.getJSONArray(i);
+//                     Log.d("questions","questions : "+" "+response.getJSONArray(i).get(0));
+//                     Log.d("questions","answer : "+" "+ i +" "+response.getJSONArray(i).get(1));
+
+                     questionArrayList.add(question);
                  } catch (JSONException e) {
                      e.printStackTrace();
                  }
