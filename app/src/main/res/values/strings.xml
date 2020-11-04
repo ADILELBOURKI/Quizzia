@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Quizzia</string>
+    <string name="next">Next</string>
+    <string name="quizzia_app">Quizzia App</string>
+    <string name="previous">Previous</string>
+    <string name="true_button">true</string>
+    <string name="false_button">False</string>
 </resources>
